@@ -35,7 +35,7 @@ namespace AnyLogic_Neo4j_Interface
         /// </summary>
         /// <param name="filename"></param>
         /// <returns></returns>
-        private String fileToString(String filename)
+        private String FileToString(String filename)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace AnyLogic_Neo4j_Interface
         /// </summary>
         /// <param name="filename"></param>
         /// <returns></returns>
-        private Dictionary<Double, List<Tuple<String, Double>>> readDataLog(String filename)
+        private Dictionary<Double, List<Tuple<String, Double>>> ReadDataLog(String filename)
         {
 
             Dictionary<Double, List<Tuple<String, Double>>> toreturn = new Dictionary<Double, List<Tuple<String, Double>>>();
@@ -71,7 +71,7 @@ namespace AnyLogic_Neo4j_Interface
                 }
                 catch (OleDbException exception)
                 {
-                    outputWindow.Text = "ERROR: The specified file was open in another program and couldn't be read. Please close any programs with the file open and try again.";
+                    outputWindow.Text = "ERROR: The specified file was open in another program and couldn't be read. Please close any programs with the file open and try again. " + exception.Message ;
                     return null;
                 }
 
@@ -115,7 +115,7 @@ namespace AnyLogic_Neo4j_Interface
         /// </summary>
         /// <param name="filename"></param>
         /// <returns></returns>
-        private List<Tuple<String, Double>> readParams(String filename)
+        private List<Tuple<String, Double>> ReadParams(String filename)
         {
             List<Tuple<String, Double>> toreturn = new List<Tuple<String, Double>>();
 
@@ -130,7 +130,7 @@ namespace AnyLogic_Neo4j_Interface
                 }
                 catch (OleDbException exception)
                 {
-                    outputWindow.Text = "ERROR: The specified file was open in another program and couldn't be read. Please close any programs with the file open and try again.";
+                    outputWindow.Text = "ERROR: The specified file was open in another program and couldn't be read. Please close any programs with the file open and try again. " + exception.Message;
                     return null;
                 }
 
@@ -185,18 +185,21 @@ namespace AnyLogic_Neo4j_Interface
             }
 
             //empty out old data from graph
-            if(!graph.EmptyGraph())
+            if(chkbxClearGraph.Checked)
             {
-                outputWindow.Text = "Could not empty the graph. Please try again.";
-                return;
+                if (!graph.EmptyGraph())
+                {
+                    outputWindow.Text = "Could not empty the graph. Please try again.";
+                    return;
+                }
             }
 
             //We don't need to get the anything from the alp file, just copy the text over
-            String alpFile = fileToString(alpFileSelectedViewer.Text);
+            String alpFile = FileToString(alpFileSelectedViewer.Text);
 
             //create data structures to store dataset logs and parameter logs
-            Dictionary<Double, List<Tuple<String, Double>>> datalogDictionary = readDataLog(exlFileSelectedViewer.Text);
-            List<Tuple<String, Double>> initialParams = readParams(exlFileSelectedViewer.Text);
+            Dictionary<Double, List<Tuple<String, Double>>> datalogDictionary = ReadDataLog(exlFileSelectedViewer.Text);
+            List<Tuple<String, Double>> initialParams = ReadParams(exlFileSelectedViewer.Text);
 
             //add alp file first
             if (!graph.AddAlpFile(alpFile))
@@ -232,11 +235,6 @@ namespace AnyLogic_Neo4j_Interface
 
             //if we got this far, everything worked fine. Output a success message.
             outputWindow.Text = "Success, all data loaded into Neo4j! Check the browser client to view your graph.";
-
-            //for testing, run each getter
-            var result1 = graph.GetVariablesAtTimeInterval(1);
-            string result2 = graph.GetALPFile();
-            graph.GetInitialParams();
         }
 
         /// <summary>
@@ -319,12 +317,12 @@ namespace AnyLogic_Neo4j_Interface
             if (!b.Success)
             {
                 serverErrorProvider.SetError(txtServerAddress, @"Invalid URI, bolt://###.###.###.###:####");
-                lblServerError.Text = "URI should be of form bolt://###.###.###.###:####";
+                outputWindow.Text = "URI should be of form bolt://###.###.###.###:####";
             }
             else
             {
                 serverErrorProvider.Clear();
-                lblServerError.Text = String.Empty;
+                outputWindow.Text = String.Empty;
             }
         }
 

@@ -143,7 +143,7 @@ namespace AnyLogic_Neo4j_Interface
         public Boolean AddParameterNode(String name, Double value)
         {
             //if we don't have a source parameter node defined, attempt to add it.
-            if(!paramSourceExists())
+            if(!ParamSourceExists())
             {
                 Boolean response = AddParamSourceNode();
                 if(!response) { return false; }
@@ -246,7 +246,7 @@ namespace AnyLogic_Neo4j_Interface
         public Boolean AddVariableNode(Double timeId, String name, Double value)
         {
             //if the day node specified doesn't exist, add it. If this process fails, return false.
-            if (!timeStampExists(timeId)) {
+            if (!TimeStampExists(timeId)) {
                 Boolean result = AddTimeNode(timeId);
                 if(!result) { return false; }
             }
@@ -297,7 +297,7 @@ namespace AnyLogic_Neo4j_Interface
         ///  Check if the param source node exists
         /// </summary>
         /// <returns>True if exists, false otherwise</returns>
-        private Boolean paramSourceExists()
+        private Boolean ParamSourceExists()
         {
             try
             {
@@ -324,7 +324,7 @@ namespace AnyLogic_Neo4j_Interface
         /// </summary>
         /// <param name="timeID"></param>
         /// <returns>True if it exists, false otherwise</returns>
-        private Boolean timeStampExists(Double timeID)
+        private Boolean TimeStampExists(Double timeID)
         {
             try
             {
@@ -418,6 +418,32 @@ namespace AnyLogic_Neo4j_Interface
                 return value;
             }
             catch(Exception e) { return null; }
+        }
+
+        /// <summary>
+        ///     Retrieves all time ids in the graph. 
+        /// </summary>
+        /// <returns>List of times if successful, null otherwise.</returns>
+        public List<Double> GetTimeIds()
+        {
+            List<Double> toreturn = new List<double>();
+            try
+            {
+                IStatementResult response = session.Run("MATCH (d:day)" +
+                                                        "RETURN d.id " +
+                                                        "ORDER BY d.id");
+                foreach (IRecord r in response)
+                {
+                    Double value = Convert.ToDouble(r.Values["d.id"]);
+                    toreturn.Add(value);
+                }
+
+                return toreturn;
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
         }
     }
 }

@@ -47,7 +47,7 @@
             this.excelErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.serverErrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.outputWindow = new System.Windows.Forms.TextBox();
-            this.lblServerError = new System.Windows.Forms.Label();
+            this.chkbxClearGraph = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.alpErrorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.excelErrorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serverErrorProvider)).BeginInit();
@@ -83,7 +83,7 @@
             // 
             this.alpFileUploadLbl.AutoSize = true;
             this.alpFileUploadLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.alpFileUploadLbl.Location = new System.Drawing.Point(16, 447);
+            this.alpFileUploadLbl.Location = new System.Drawing.Point(16, 410);
             this.alpFileUploadLbl.Name = "alpFileUploadLbl";
             this.alpFileUploadLbl.Size = new System.Drawing.Size(210, 32);
             this.alpFileUploadLbl.TabIndex = 3;
@@ -93,7 +93,7 @@
             // 
             this.excelFileUploadLbl.AutoSize = true;
             this.excelFileUploadLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.excelFileUploadLbl.Location = new System.Drawing.Point(16, 549);
+            this.excelFileUploadLbl.Location = new System.Drawing.Point(16, 520);
             this.excelFileUploadLbl.Name = "excelFileUploadLbl";
             this.excelFileUploadLbl.Size = new System.Drawing.Size(226, 32);
             this.excelFileUploadLbl.TabIndex = 4;
@@ -105,7 +105,7 @@
             // 
             // alpFileUploadBtn
             // 
-            this.alpFileUploadBtn.Location = new System.Drawing.Point(273, 446);
+            this.alpFileUploadBtn.Location = new System.Drawing.Point(273, 409);
             this.alpFileUploadBtn.Name = "alpFileUploadBtn";
             this.alpFileUploadBtn.Size = new System.Drawing.Size(204, 42);
             this.alpFileUploadBtn.TabIndex = 5;
@@ -115,7 +115,7 @@
             // 
             // excelFileUploadBtn
             // 
-            this.excelFileUploadBtn.Location = new System.Drawing.Point(273, 548);
+            this.excelFileUploadBtn.Location = new System.Drawing.Point(273, 519);
             this.excelFileUploadBtn.Name = "excelFileUploadBtn";
             this.excelFileUploadBtn.Size = new System.Drawing.Size(204, 42);
             this.excelFileUploadBtn.TabIndex = 6;
@@ -127,7 +127,7 @@
             // 
             this.alpFileSelectedViewer.AutoSize = true;
             this.alpFileSelectedViewer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.alpFileSelectedViewer.Location = new System.Drawing.Point(57, 496);
+            this.alpFileSelectedViewer.Location = new System.Drawing.Point(56, 451);
             this.alpFileSelectedViewer.Name = "alpFileSelectedViewer";
             this.alpFileSelectedViewer.Size = new System.Drawing.Size(170, 25);
             this.alpFileSelectedViewer.TabIndex = 8;
@@ -138,7 +138,7 @@
             // 
             this.exlFileSelectedViewer.AutoSize = true;
             this.exlFileSelectedViewer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exlFileSelectedViewer.Location = new System.Drawing.Point(57, 596);
+            this.exlFileSelectedViewer.Location = new System.Drawing.Point(57, 564);
             this.exlFileSelectedViewer.Name = "exlFileSelectedViewer";
             this.exlFileSelectedViewer.Size = new System.Drawing.Size(170, 25);
             this.exlFileSelectedViewer.TabIndex = 10;
@@ -147,7 +147,7 @@
             // 
             // submitBtn
             // 
-            this.submitBtn.Location = new System.Drawing.Point(434, 784);
+            this.submitBtn.Location = new System.Drawing.Point(434, 822);
             this.submitBtn.Name = "submitBtn";
             this.submitBtn.Size = new System.Drawing.Size(204, 42);
             this.submitBtn.TabIndex = 11;
@@ -159,7 +159,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 342);
+            this.label1.Location = new System.Drawing.Point(16, 299);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(291, 32);
             this.label1.TabIndex = 12;
@@ -168,7 +168,7 @@
             // txtServerAddress
             // 
             this.txtServerAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtServerAddress.Location = new System.Drawing.Point(62, 388);
+            this.txtServerAddress.Location = new System.Drawing.Point(62, 337);
             this.txtServerAddress.Name = "txtServerAddress";
             this.txtServerAddress.Size = new System.Drawing.Size(576, 30);
             this.txtServerAddress.TabIndex = 13;
@@ -178,7 +178,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.label2.Location = new System.Drawing.Point(16, 640);
+            this.label2.Location = new System.Drawing.Point(16, 680);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 32);
             this.label2.TabIndex = 14;
@@ -204,28 +204,30 @@
             // 
             // outputWindow
             // 
-            this.outputWindow.Location = new System.Drawing.Point(22, 685);
+            this.outputWindow.Location = new System.Drawing.Point(22, 732);
             this.outputWindow.Multiline = true;
             this.outputWindow.Name = "outputWindow";
             this.outputWindow.ReadOnly = true;
             this.outputWindow.Size = new System.Drawing.Size(616, 84);
             this.outputWindow.TabIndex = 15;
             // 
-            // lblServerError
+            // chkbxClearGraph
             // 
-            this.lblServerError.AutoSize = true;
-            this.lblServerError.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblServerError.Location = new System.Drawing.Point(13, 305);
-            this.lblServerError.Name = "lblServerError";
-            this.lblServerError.Size = new System.Drawing.Size(0, 25);
-            this.lblServerError.TabIndex = 16;
+            this.chkbxClearGraph.AutoSize = true;
+            this.chkbxClearGraph.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkbxClearGraph.Location = new System.Drawing.Point(22, 631);
+            this.chkbxClearGraph.Name = "chkbxClearGraph";
+            this.chkbxClearGraph.Size = new System.Drawing.Size(310, 29);
+            this.chkbxClearGraph.TabIndex = 16;
+            this.chkbxClearGraph.Text = "Delete Existing Graph Contents";
+            this.chkbxClearGraph.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(671, 838);
-            this.Controls.Add(this.lblServerError);
+            this.ClientSize = new System.Drawing.Size(671, 889);
+            this.Controls.Add(this.chkbxClearGraph);
             this.Controls.Add(this.outputWindow);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtServerAddress);
@@ -268,7 +270,7 @@
         private System.Windows.Forms.ErrorProvider excelErrorProvider;
         private System.Windows.Forms.ErrorProvider serverErrorProvider;
         private System.Windows.Forms.TextBox outputWindow;
-        private System.Windows.Forms.Label lblServerError;
+        private System.Windows.Forms.CheckBox chkbxClearGraph;
     }
 }
 
