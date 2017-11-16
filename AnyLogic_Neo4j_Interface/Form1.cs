@@ -171,7 +171,7 @@ namespace AnyLogic_Neo4j_Interface
             }
 
             //connection string initialization, attempt database connection before any parsing occurs
-            if(!graph.SetupConnection(txtServerAddress.Text, username: "neo4j", password: "password")) {
+            if(!graph.SetupConnection(txtServerAddress.Text, username: usernameTxt.Text, password: passwordTxt.Text)) {
                 outputWindow.Text = "Connection to the Neo4j server could not be established. Please try again.";
                 return;
             }
@@ -184,14 +184,18 @@ namespace AnyLogic_Neo4j_Interface
                 return;
             }
 
+            outputWindow.Text = "Connection to Neo4j established...\n";
+
             //empty out old data from graph
-            if(chkbxClearGraph.Checked)
+            if (chkbxClearGraph.Checked)
             {
                 if (!graph.EmptyGraph())
                 {
                     outputWindow.Text = "Could not empty the graph. Please try again.";
                     return;
                 }
+
+                outputWindow.Text += "Neo4j Graph Emptied...\n";
             }
 
             //We don't need to get the anything from the alp file, just copy the text over
@@ -207,7 +211,9 @@ namespace AnyLogic_Neo4j_Interface
                 outputWindow.Text = "ERROR: Failed to add a alp file to the graph. Please try again.";
                 return;
             }
-            
+
+            outputWindow.Text += "ALP File Added to Neo4j...\n";
+
             //add initial parameters to to neo4j database
             foreach (Tuple<String, Double> item in initialParams)
             {
@@ -217,6 +223,8 @@ namespace AnyLogic_Neo4j_Interface
                     return;
                 }
             }
+
+            outputWindow.Text += "Initial Params parsed into Neo4j...\n";
 
             foreach (Double key in datalogDictionary.Keys)
             {
