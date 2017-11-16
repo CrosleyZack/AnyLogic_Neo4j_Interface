@@ -89,6 +89,9 @@ namespace AnyLogic_Neo4j_Interface
         {
             try
             {
+                // replace any single backslashes with double backslash
+                // to prevent error in neo4j database
+                alpFile.Replace("\\", "\\\\");
                 IStatementResult response = session.Run("MERGE (a:ALP {value: '" + alpFile + "'}) " +
                                                         "RETURN a");
                 //Validate response
